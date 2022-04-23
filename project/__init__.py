@@ -1,4 +1,10 @@
 # init.py
+import pathlib
+import os.path
+
+from google_auth_oauthlib.flow import Flow
+from google.oauth2 import id_token
+import google.auth.transport.requests
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -20,6 +26,8 @@ def create_app():
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+
+    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
     from .models import Users, Conteiners
 

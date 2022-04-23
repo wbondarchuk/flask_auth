@@ -3,7 +3,6 @@
 from flask import Blueprint, render_template, request, session, abort, current_app
 from flask_login import current_user, login_required
 
-
 main = Blueprint('main', __name__)
 
 
@@ -15,4 +14,8 @@ def index():
 @main.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.name)
+    name = current_user.name
+    return render_template('profile.html', name=name)
+
+
+
